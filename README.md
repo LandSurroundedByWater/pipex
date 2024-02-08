@@ -1,2 +1,2 @@
 # pipex
-Pipex prjoect in Hive Helsinki coding school
+Pipex project in Hive Helsinki coding school
