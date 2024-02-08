@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 13:27:43 by tsaari            #+#    #+#             */
-/*   Updated: 2024/02/08 11:40:26 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/02/08 15:19:24 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	ft_free(char **arr)
 		free(arr[i]);
 	free(arr);
 }
-
 
 
 char *check_access(char **patharray, char *command)
@@ -55,15 +54,16 @@ char	*parse_path(char *cmd, char **envp)
 	i = 0;
 	while (envp[i] != 0)
 	{
-		if(ft_strncmp(envp[i], "PATH=", 5) == 0)
+		if(ft_strncmp(envp[i], "PATH=", 4) == 0)
 		{
 			pathline = &envp[i][5];
+			printf("%s", pathline);
 			patharray = ft_split(pathline, ':');
 			if (!patharray)
 			{
-				printf("error6");
+				perror("split");
 				ft_free(patharray);
-				exit(1);
+				exit(EXIT_FAILURE);
 			}
 			return(check_access(patharray, cmd));
 		}
