@@ -1,7 +1,8 @@
 NAME = pipex
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address -fno-omit-frame-pointer
+LDFLAGS = -fsanitize=address
 RM = rm -rf
 
 
@@ -27,7 +28,7 @@ $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
 $(NAME):	$(OBJ_DIR) $(OBJS) $(LIBFT) libft/*.c
-			@$(CC) $(OBJS)  $(LIBFT) -o $(NAME)
+			@$(CC) $(OBJS)  $(LIBFT) -o $(NAME) $(LDFLAGS)
 			@echo "\033[1;32mPipex compile success!\n\033[0m"
 
 
