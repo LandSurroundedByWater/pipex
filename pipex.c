@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 13:33:40 by tsaari            #+#    #+#             */
-/*   Updated: 2024/02/09 10:49:07 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/02/09 11:41:56 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ int	execute(char *cmd_path, char **cmd_args, char **envp)
 	{
 		ft_putstr_fd("pipex: command not found: ", 2);
 		ft_putendl_fd(cmd_args[0], 2);
-		return(-1);
+		ft_free(cmd_args);
+		free(cmd_path);
+		return (-1);
 	}
 	return (0);
 }
@@ -39,22 +41,14 @@ void	parse_command_paths(char *cmd, char **envp)
 	cmd_path = check_access(paths, cmd_args[0]);
 	if (cmd_path == NULL)
 	{
-		if (cmd_args != NULL)
-			ft_free(cmd_args);
-		if (paths != 0)
-			ft_free(paths);
-		if (cmd_path != 0)
-			free(cmd_path);
+		ft_free(cmd_args);
+		ft_free(paths);
+		free(cmd_path);
 		ft_error(ERR_MALLOC);
 	}
 	if (execute(cmd_path, cmd_args, envp) == -1)
 	{
-		if (cmd_args != NULL)
-			ft_free(cmd_args);
-		if (paths != 0)
-			ft_free(paths);
-		if (cmd_path != 0)
-			free(cmd_path);
+		ft_free(paths);
 		exit(1);
 	}
 }
@@ -79,7 +73,6 @@ void	parent_process(int *end, char **argv, char **envp)
 	int	fd_pr;
 
 	fd_pr = open(argv[4], O_CREAT | O_RDWR | O_TRUNC, 0644);
-
 	dup2(fd_pr, 1);
 	dup2(end[0], 0);
 	close(end[1]);
