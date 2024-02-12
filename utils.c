@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 13:27:43 by tsaari            #+#    #+#             */
-/*   Updated: 2024/02/09 10:56:45 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/02/12 09:22:14 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ char	*check_access(char **patharray, char *command)
 	i = 0;
 	while (patharray[i] != 0)
 	{
+		if(ft_strchr(command, '/') != 0)
+			command = ft_strchr(command, '/') + 1;
 		cmd_with_path = ft_strjoin(ft_strjoin(patharray[i], "/"), command);
 		if (!cmd_with_path)
 			ft_error(ERR_MALLOC);
