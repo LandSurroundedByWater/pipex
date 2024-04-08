@@ -6,14 +6,15 @@
 #    By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/04 09:39:11 by tsaari            #+#    #+#              #
-#    Updated: 2024/04/06 13:43:06 by tsaari           ###   ########.fr        #
+#    Updated: 2024/04/08 07:46:19 by tsaari           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = pipex
 
-CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror -g
+LDFLAGS = -fsanitize=address
 LIBFT = -Llibft -lft
 RM = rm -rf
 

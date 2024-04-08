@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 13:33:40 by tsaari            #+#    #+#             */
-/*   Updated: 2024/04/06 14:20:53 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/04/08 12:24:18 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ static void	make_childs(char **argv, char **envp, int *fd, int *end)
 	}
 	close(end[0]);
 	close(end[1]);
-	waitpid(pid[1], &status, 0);
 	waitpid(pid[0], &status, 0);
+	waitpid(pid[1], &status, 0);
 	if (status)
 		exit (status);
 }
@@ -77,7 +77,9 @@ int	main(int argc, char **argv, char **envp)
 	int	fd[2];
 
 	if (argc != 5)
+	{
 		ft_error(ERR_ARG);
+	}
 	else
 	{
 		fd[0] = open(argv[1], O_RDONLY);
