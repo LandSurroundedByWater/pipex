@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 13:33:40 by tsaari            #+#    #+#             */
-/*   Updated: 2024/04/08 12:24:18 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/04/09 07:55:56 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static void	child_1_process(int fd_in, int *end, char **argv, char **envp)
 	dup2(fd_in, STDIN_FILENO);
 	parse_command_paths(argv[2], envp);
 	close(fd_in);
+	exit(0);
 }
 
 static void	child_2_process(int fd_out, int *end, char **argv, char **envp)
@@ -30,6 +31,7 @@ static void	child_2_process(int fd_out, int *end, char **argv, char **envp)
 	dup2(fd_out, STDOUT_FILENO);
 	parse_command_paths(argv[3], envp);
 	close(fd_out);
+	exit(0);
 }
 
 static void	make_childs(char **argv, char **envp, int *fd, int *end)
@@ -55,7 +57,7 @@ static void	make_childs(char **argv, char **envp, int *fd, int *end)
 	}
 	close(end[0]);
 	close(end[1]);
-	waitpid(pid[0], &status, 0);
+	waitpid(pid[0], NULL, 0);
 	waitpid(pid[1], &status, 0);
 	if (status)
 		exit (status);

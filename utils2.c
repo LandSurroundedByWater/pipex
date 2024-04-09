@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 13:37:48 by tsaari            #+#    #+#             */
-/*   Updated: 2024/04/08 12:18:42 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/04/09 07:42:03 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,11 @@ void	free_array(char **s)
 	}
 	free(s);
 	exit(1);
+}
+
+int	execute(char *cmd_path, char **cmd_args, char **envp)
+{
+	if (execve(cmd_path, cmd_args, envp) == -1)
+		return (-1);
+	return (0);
 }

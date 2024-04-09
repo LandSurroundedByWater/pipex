@@ -6,18 +6,11 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 13:31:54 by tsaari            #+#    #+#             */
-/*   Updated: 2024/04/08 13:19:01 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/04/09 07:31:13 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
-static int	execute(char *cmd_path, char **cmd_args, char **envp)
-{
-	if (execve(cmd_path, cmd_args, envp) == -1)
-		return (-1);
-	return (0);
-}
 
 char	*check_paths(char **patharray, char *command, char *cmd_with_path)
 {
@@ -84,9 +77,10 @@ char	**parse_path(char **envp)
 	}
 	return (NULL);
 }
-static char **split_command(char *cmd)
+
+static char	**split_command(char *cmd)
 {
-	char **cmd_args;
+	char	**cmd_args;
 
 	cmd_args = NULL;
 	if (ft_strchr(cmd, '\'') != 0)
@@ -100,7 +94,6 @@ static char **split_command(char *cmd)
 	}
 	return (cmd_args);
 }
-
 
 void	parse_command_paths(char *cmd, char **envp)
 {
@@ -118,7 +111,8 @@ void	parse_command_paths(char *cmd, char **envp)
 		close(dirfd);
 		ft_error_cmd(ERR_INFILE, cmd);
 	}
-	else if (ft_strchr(cmd_args[0], '/') != 0 && execute(cmd_args[0], cmd_args, envp) == -1)
+	else if (ft_strchr(cmd_args[0], '/') != 0 && execute(cmd_args[0], \
+	cmd_args, envp) == -1)
 		ft_error_cmd(ERR_INFILE, cmd_args[0]);
 	else
 	{

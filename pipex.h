@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 13:26:01 by tsaari            #+#    #+#             */
-/*   Updated: 2024/04/08 12:26:33 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/04/09 07:30:12 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,6 @@ void	ft_error_arg(int code);
 void	parse_command_paths(char *cmd, char **envp);
 void	check_cmd(char *str);
 void	free_array(char **s);
+int		execute(char *cmd_path, char **cmd_args, char **envp);
 
 #endif

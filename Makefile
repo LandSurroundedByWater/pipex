@@ -6,7 +6,7 @@
 #    By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/04 09:39:11 by tsaari            #+#    #+#              #
-#    Updated: 2024/04/08 07:46:19 by tsaari           ###   ########.fr        #
+#    Updated: 2024/04/09 07:21:28 by tsaari           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,15 +14,15 @@ NAME = pipex
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g
-LDFLAGS = -fsanitize=address
+#LDFLAGS = -fsanitize=address
 LIBFT = -Llibft -lft
 RM = rm -rf
 
 SRCS		=	pipex.c \
 				utils.c \
-				errorhandling.c \
 				utils2.c \
-				parse.c
+				parse.c \
+				errorhandling.c
 
 OBJ_DIR		= obj
 OBJS		= $(SRCS:%.c=$(OBJ_DIR)/%.o)
